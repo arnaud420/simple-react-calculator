@@ -6,7 +6,7 @@ class Key extends Component {
 
         return (
             <div className="key">
-                <button onClick={ keyPress }>{ keyMap }</button>
+                <div className="button" onClick={ keyPress }>{ keyMap }</div>
             </div>
         );
     }

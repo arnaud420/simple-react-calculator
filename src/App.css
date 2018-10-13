@@ -8,19 +8,21 @@ body {
   display: flex;
   flex-wrap: wrap;
 }
-.key:last-child button,
-button:focus {
-  background: lightblue;
-}
 .key {
   flex: 25%;
 }
-.key button,
 input {
+  display: block;
   width: 100%;
-}
-button:hover {
-  opacity: .6;
+  padding: .25rem 0;
+  font-size: 1rem;
+  line-height: 1.5;
+  color: #495057;
+  background-color: #fff;
+  background-clip: padding-box;
+  border: 1px solid #ced4da;
+  border-radius: .25rem;
+  transition: border-color .15s ease-in-out,box-shadow .15s ease-in-out;
 }
 .error {
   position: relative;
@@ -34,4 +36,18 @@ button:hover {
 }
 .d-none {
   display: none;
+}
+div.button {
+  text-align: center;
+  padding: .25rem;
+  margin: .1rem;
+  background: lightgrey;
+  cursor: pointer;
+}
+div.button:hover {
+  opacity: .6;
+}
+.key:last-child div.button,
+div.button:focus {
+  background: lightblue;
 }

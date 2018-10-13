@@ -47,7 +47,8 @@ class CalculatorWrapper extends Component {
                         const result = eval(match[0]);
                         this.setState({
                             result,
-                            operation: result
+                            operation: result,
+                            error: false
                         });
                     }
                 }
