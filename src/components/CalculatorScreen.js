@@ -7,7 +7,7 @@ class CalculatorScreen extends Component {
         return (
             <div className="CalculetteScreen">
                 <h1>{ result }</h1>
-                <input type="text" value={ value } />
+                <input type="text" value={ value } onChange={ () => null } disabled />
             </div>
 
         );

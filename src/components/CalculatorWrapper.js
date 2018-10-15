@@ -7,7 +7,7 @@ class CalculatorWrapper extends Component {
         super(props);
         this.state = {
             result: 0,
-            keyMaps: ['7', '8', '9', '+', '4', '5', '6', '-', '1', '2', '3', 'x', '0',',', '/', 'ac', '='],
+            keyMaps: ['7', '8', '9', '+', '4', '5', '6', '-', '1', '2', '3', '*', '0','.', '/', 'ac', '='],
             operation: '',
             error: false
         };
@@ -20,7 +20,22 @@ class CalculatorWrapper extends Component {
             result: 0,
             operation: '',
             error: false
-        })
+        });
+    }
+
+    displayError() {
+        this.clearState();
+        this.setState({
+            error: true
+        });
+    }
+
+    displayResult(result) {
+        this.setState({
+            result,
+            operation: result,
+            error: false
+        });
     }
 
     onKeyPress(e) {
@@ -34,35 +49,20 @@ class CalculatorWrapper extends Component {
 
         switch (value) {
             case '=': {
-                const regex = /(\d+[\+x\*-/]?)*/;
-                const match = this.state.operation.match(regex);
-                if (match[0] !== undefined) {
-                    if (this.state.operation !== match[0]) {
-                        this.clearState();
-                        this.setState({
-                            error: true
-                        })
+                const regex = /(\d+[+*-/]?)*/;
+                try {
+                    const match = this.state.operation.match(regex);
+                    const isMatch = match[0];
+                    if (isMatch !== undefined && this.state.operation === isMatch) {
+                        this.displayResult(eval(isMatch));
                     }
                     else {
-                        const result = eval(match[0]);
-                        this.setState({
-                            result,
-                            operation: result,
-                            error: false
-                        });
+                        this.displayError();
                     }
                 }
-                else {
-                    this.clearState();
+                catch (e) {
+                    this.displayError();
                 }
-                break;
-            }
-            case 'x': {
-                value = '*';
-                break;
-            }
-            case ',': {
-                value = '.';
                 break;
             }
             case 'ac': {
